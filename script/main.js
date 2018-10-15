@@ -7,6 +7,15 @@ function execProgram()
 
 function programToArray(program)
 {
-	
+	var i;
+	var parsedProgram;
+	for(i=0;i<program.length;i++)
+	{
+		if(program[i] == "\n")
+		{
+		
+		}
+	}
+	return parsedProgram;
 }
 
