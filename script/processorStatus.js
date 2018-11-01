@@ -18,10 +18,14 @@ class ProcessorStatus
 	var SREG; 	//8bit!! max 255
 
 	function ProcessorStatus()
-	{	
+	{
 		flags = new Array(8);
-		gpRegs = new Array(32); //R0-->R31	
+		gpRegs = new Array(32); //R0-->R31
+		PC = 0;
+
 	}
+
+	
 
 
 }

@@ -10,8 +10,9 @@ function execProgram()
 		console.log(pArray[i]);
 		if(pArray[i][0] == undefined)
 			break;
-	}	
-	
+	}
+	processor proc = new processor();
+
 }
 
 function programToArray(program)
@@ -23,22 +24,21 @@ function programToArray(program)
 	for(i=0;i<parsedProgram.length;i++)
 	{
 			parsedProgram[i] = new Array(30);
-	}	
+	}
 
 	for(i=0;i<program.length;i++)
 	{
 		if(program[i] == " ")
 		{
-			j++;			
+			j++;
 		}
 		else
 		{
 			for(i=0;i<parsedProgram[j].length;i++)
-			{			
-				parsedProgram[j][i] = program[i];	
-			}		
+			{
+				parsedProgram[j][i] = program[i];
+			}
 		}
 	}
 	return parsedProgram;
 }
-
