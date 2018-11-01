@@ -1,5 +1,8 @@
 class memory{
-  
+
+  function memory(){
+    
+  }
 
 
 

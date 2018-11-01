@@ -6,7 +6,9 @@ class processor{
   function processor()
   {
     memory = new memory();
-    
+    processorStatus = new processorStatus();
   }
+
+  
 
 }
