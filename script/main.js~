@@ -11,7 +11,7 @@ function execProgram()
 		if(pArray[i] == "")
 			break;
 	}
-	var proc = new Processor(pArray);
+	var proc = new Processor();
 
 }
 

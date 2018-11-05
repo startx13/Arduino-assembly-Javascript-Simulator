@@ -1,0 +1,14 @@
+class Processor{
+
+  var procStatus;
+  //var memory;
+
+  Processor()
+  {
+    //memory = new memory();
+    procStatus = new ProcessorStatus();
+  }
+
+  
+
+}
