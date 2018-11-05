@@ -1,17 +1,14 @@
 class Processor{
 
-  	var procStatus = null;
-  	var memory = null;
-	var prog = null;
 
-  	Processor(program)
+  	constructor(program)
   	{
 		this.prog = program;
     		//memory = new Memory(program);
     		//procStatus = new ProcessorStatus();
   	}
 
-  	function start()
+  	start()
 	{
 		var line;
 		var i=0;
@@ -23,7 +20,7 @@ class Processor{
 		
 	}
 	
-	function parseLine(line)
+	parseLine(line)
 	{
 		return line.split(" ");
 	}
