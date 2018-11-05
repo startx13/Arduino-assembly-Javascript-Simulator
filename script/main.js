@@ -1,3 +1,4 @@
+var proc = null;
 function execProgram()
 {
 	var program = document.getElementById("program").value;
@@ -11,7 +12,8 @@ function execProgram()
 		if(pArray[i] == "")
 			break;
 	}
-	var proc = new Processor(pArray);
+	proc = new Processor(pArray);
+	proc.start();
 
 }
 
