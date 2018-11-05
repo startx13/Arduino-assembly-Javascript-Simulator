@@ -1,9 +1,0 @@
-class memory{
-
-  function memory(){
-    
-  }
-
-
-
-}
