@@ -8,7 +8,7 @@ class Processor{
     		//procStatus = new ProcessorStatus();
   	}
 
-  	start()
+  start()
 	{
 		var line;
 		var i=0;
@@ -17,12 +17,40 @@ class Processor{
 			line = parseLine(prog[i]);
 			console.log(line);
 		}
-		
+
 	}
-	
+
 	parseLine(line)
 	{
 		return line.split(" ");
 	}
+
+  execInstr(line)
+  {
+      switch (line[0]) {
+        case 'mov':
+          mov(line[1],line[3]);
+          break;
+        case 'add':
+          add(line[1],line[3]);
+          break;
+        default:
+
+
+      }
+  }
+
+  //All instructions
+
+  mov(a,b)
+  {
+
+  }
+
+  add(a,b)
+  {
+
+    
+  }
 
 }
