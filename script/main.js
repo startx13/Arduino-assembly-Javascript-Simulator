@@ -2,8 +2,6 @@ var proc = null;
 function execProgram()
 {
 	var program = document.getElementById("program").value;
-	//console.log(program);
-	//console.log(typeof(program));
 	var pArray = programToArray(program);
 	var i,j;
 	for(i=0;i<pArray.length;i++)

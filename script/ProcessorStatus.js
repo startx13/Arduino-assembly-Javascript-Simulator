@@ -11,17 +11,19 @@ class ProcessorStatus
 	 *T Bit copy. Special bit load and bit store instructions use this bit.
 	 *I Interrupt flag. Set when interrupts are enabled.
 	*/
-	var flags;
-	var gpRegs; 	//8bit!! max 255
-	var PC;   	//16/22 bit!!
-	var SP;   	//8/16 bit!!
-	var SREG; 	//8bit!! max 255
+	//var flags;
+	//var gpRegs; 	//8bit!! max 255
+	//var PC;   	//16/22 bit!!
+	//var SP;   	//8/16 bit!!
+	//var SREG; 	//8bit!! max 255
 
 	ProcessorStatus()
 	{
-		flags = new Array(8);
-		gpRegs = new Array(32); //R0-->R31
-		PC = 0;
+		this.flags = new Array(8);
+		this.gpRegs = new Array(32); //R0-->R31
+		this.PC = 0;
+		this.SP = 0;
+		this.SREG = 0;
 
 	}
 
