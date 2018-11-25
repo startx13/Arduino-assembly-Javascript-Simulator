@@ -35,7 +35,7 @@ class Processor{
   	{
       [].forEach.call( document.querySelectorAll("script[src]"), function( src ) {
     	  console.log( src );
-
+        //window["functionName"](arguments);
     	});
 
   	}
