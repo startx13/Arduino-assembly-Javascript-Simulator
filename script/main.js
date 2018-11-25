@@ -1,6 +1,7 @@
 var proc = null;
 function execProgram()
 {
+
 	var program = document.getElementById("program").value;
 	var pArray = programToArray(program);
 	var i,j;
