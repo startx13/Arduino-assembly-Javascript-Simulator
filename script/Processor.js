@@ -35,7 +35,11 @@ class Processor{
   	{
       [].forEach.call( document.querySelectorAll("script[src]"), function( src ) {
     	  console.log( src );
-        //window["functionName"](arguments);
+        var str = '<script src="script/Operation/' + instr + '.js"></script>';
+        if(src === str)
+        {
+          window[inst](op);
+        }
     	});
 
   	}
