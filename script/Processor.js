@@ -37,16 +37,21 @@ class Processor{
     	  console.log( src );
         var str = '<script src="script/Operation/' + instr + '.js">';
 	console.log(str);
-        if(src.valueOf() == str.valueOf())
-        {
-          window[inst](op);
-        }
-	else
-	{
-	  console.log("false");	
-	}
+        //if(src.valueOf() === str.valueOf())
+        //{
+          window["add"](op);
+        //}
+	//else
+	//{
+	//  console.log("false");	
+	//}
     	});
 
   	}
 
+	//add function here
+	add(op)
+	{	
+		console.log("add");
+	}
 }
