@@ -6,6 +6,7 @@ class Processor{
 		this.prog = program;
     		//memory = new Memory(program);
     		this.procStatus = new ProcessorStatus();
+		this.operationList = new Operation();
   	}
 
 
