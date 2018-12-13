@@ -3,15 +3,17 @@ class Processor{
   	constructor(program)
   	{
 
-		this.prog = program;
+		    this.prog = program;
     		//memory = new Memory(program);
     		this.procStatus = new ProcessorStatus();
-		this.operationList = new Operation();
+		    this.operationList = new Operation();
+        //add op here
+        
   	}
 
 
 
-    	start()
+    start()
   	{
   		var line;
   		var command;
@@ -31,10 +33,8 @@ class Processor{
 
   	}
 
-  	execInstruction(instr,op)
- 	{
-     
-
+    execInstruction(instr,op)
+ 	  {
+        this.operationList.exec(instr,op);
   	}
-
 }
