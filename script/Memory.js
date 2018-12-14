@@ -4,6 +4,4 @@ class Memory{
 	    this.program = program;
 	  }
 
-
-
 }
