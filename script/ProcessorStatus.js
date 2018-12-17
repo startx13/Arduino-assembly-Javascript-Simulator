@@ -24,6 +24,10 @@ class ProcessorStatus
 		this.PC = 0;
 		this.SP = 0;
 		this.SREG = 0;
+		for(var i=0;i<32;i++)
+		{
+			this.gpRegs[i] = 0;
+		}
 
 	}
 
