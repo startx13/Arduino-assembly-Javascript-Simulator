@@ -8,16 +8,16 @@ class Processor{
     		this.procStatus = new ProcessorStatus();
 		    this.operationList = new Operation();
         	//add op here
-        	
+
         	//add
         	var addF = function(op,procStatus){
         		if(typeof op[0] === 'string')
         		{
-        			if(typeof Number(op[1]) == 'integer')
+        			if(Number(op[1]) !="NaN")
         			{
         				var regInt = op[0].split("r");
         				procStatus.gpRegs[regInt] = procStatus.gpRegs[regInt] + Number(op[1]);
-        				
+
         			}
         			else
         			{
@@ -27,13 +27,14 @@ class Processor{
         				var regInt2 = Number(op[1].split("r"));
         				console.log(regInt2);
         				regInt2 = Number(regInt2);
-        				
+
         				procStatus.gpRegs[regInt1] = procStatus.gpRegs[regInt1] + procStatus.gpRegs[regInt2];
         			}
         		}
         	}
+
         	this.operationList.addOperation("add",addF);
-        
+
   	}
 
 
