@@ -3,19 +3,20 @@ class Processor{
   	constructor(program)
   	{
 
-		    this.prog = program;
+		this.prog = program;
     		//memory = new Memory(program);
     		this.procStatus = new ProcessorStatus();
-		    this.operationList = new Operation();
+		this.operationList = new Operation();
         	//add op here
 
         	//add
         	var addF = function(op,procStatus){
         		if(typeof op[0] === 'string')
         		{
-        			if(Number(op[1]) !="NaN")
+        			if(typeof Number(op[1]) === 'integer')
         			{
-        				var regInt = op[0].split("r");
+        				var regInt1v = op[0].split("r");
+        				var regInt1 = Number(regInt1v[1]);
         				procStatus.gpRegs[regInt] = procStatus.gpRegs[regInt] + Number(op[1]);
 
         			}
@@ -23,9 +24,8 @@ class Processor{
         			{
         				var regInt1v = op[0].split("r");
         				var regInt1 = Number(regInt1v[1]);
-        				console.log(regInt1);
         				var regInt2 = Number(op[1].split("r"));
-        				console.log(regInt2);
+       
         				regInt2 = Number(regInt2);
 
         				procStatus.gpRegs[regInt1] = procStatus.gpRegs[regInt1] + procStatus.gpRegs[regInt2];
