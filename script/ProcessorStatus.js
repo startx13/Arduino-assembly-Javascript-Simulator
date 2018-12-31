@@ -26,17 +26,19 @@ class ProcessorStatus
 		this.SREG = 0;
 		for(var i=0;i<32;i++)
 		{
-			this.gpRegs[i] = 0;
+			this.gpRegs[i] = Number(0);
 		}
+		gpRegs[1] = Number(9);
 
 	}
 	
 	updateUI()
 	{
+		console.log(this.gpRegs[0]);
 		for(var i=0;i<32;i++)
 		{
 			var nomeReg = "r"+i;
-			document.getElementById(nomereg).value = this.gpRegs[i];
+			document.getElementById(nomeReg).innerHTML = this.gpRegs[i];
 		}	
 	}	
 }

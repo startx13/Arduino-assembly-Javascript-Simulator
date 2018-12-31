@@ -42,7 +42,7 @@ class Processor{
   			op[0] = line[0];
   			op[1] = line[1];
   			this.procStatus.PC = this.procStatus.PC + 1;
-        		this.execInstruction(command,op);
+        		//this.execInstruction(command,op);
 			this.procStatus.updateUI();
   		}
 
