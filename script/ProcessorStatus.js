@@ -30,8 +30,13 @@ class ProcessorStatus
 		}
 
 	}
-
 	
-
-
+	updateUI()
+	{
+		for(var i=0;i<32;i++)
+		{
+			var nomeReg = "r"+i;
+			document.getElementById(nomereg).value = this.gpRegs[i];
+		}	
+	}	
 }
