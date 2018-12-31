@@ -17,24 +17,24 @@ class ProcessorStatus
 	//var SP;   	//8/16 bit!!
 	//var SREG; 	//8bit!! max 255
 
-	ProcessorStatus()
+	constructor()
 	{
 		this.flags = new Array(8);
-		this.gpRegs = new Array(32); //R0-->R31
+		this.gpRegs = [];//new Array(32); //R0-->R31
 		this.PC = 0;
 		this.SP = 0;
 		this.SREG = 0;
-		for(var i=0;i<32;i++)
+		for(var i=0;i<34;i++)
 		{
-			this.gpRegs[i] = Number(0);
+			this.gpRegs[i] = 0;		
 		}
-		gpRegs[1] = Number(9);
+		this.gpRegs[1] = 9;
 
 	}
 	
 	updateUI()
 	{
-		console.log(this.gpRegs[0]);
+		
 		for(var i=0;i<32;i++)
 		{
 			var nomeReg = "r"+i;

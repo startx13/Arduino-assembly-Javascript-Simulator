@@ -15,8 +15,10 @@ class Processor{
         		{
         			var regInt1v = op[0].split("r");
         			var regInt1 = Number(regInt1v[1]);
-        			var regInt2 = Number(op[1].split("r"));
-        			regInt2 = Number(regInt2);
+
+        			var regInt2v = op[1].split("r");
+        			var regInt2 = Number(regInt1v[1]);
+
 				procStatus.gpRegs[regInt1] = procStatus.gpRegs[regInt1] + procStatus.gpRegs[regInt2];
         		}
         	}
@@ -42,7 +44,7 @@ class Processor{
   			op[0] = line[0];
   			op[1] = line[1];
   			this.procStatus.PC = this.procStatus.PC + 1;
-        		//this.execInstruction(command,op);
+        		this.execInstruction(command,op);
 			this.procStatus.updateUI();
   		}
 
