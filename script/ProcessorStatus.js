@@ -20,11 +20,11 @@ class ProcessorStatus
 	constructor()
 	{
 		this.flags = new Array(8);
-		this.gpRegs = [];//new Array(32); //R0-->R31
+		this.gpRegs = new Array(32);//new Array(32); //R0-->R31
 		this.PC = 0;
 		this.SP = 0;
 		this.SREG = 0;
-		for(var i=0;i<34;i++)
+		for(var i=0;i<32;i++)
 		{
 			this.gpRegs[i] = 0;		
 		}

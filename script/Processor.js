@@ -19,8 +19,9 @@ class Processor{
         			var regInt2v = op[1].split("r");
         			var regInt2 = Number(regInt1v[1]);
 
-				procStatus.gpRegs[regInt1] = procStatus.gpRegs[regInt1] + procStatus.gpRegs[regInt2];
-        		}
+				var b = procStatus.gpRegs[regInt1] + procStatus.gpRegs[regInt2];
+				procStatus.gpRegs[regInt1] = b;       		
+			}
         	}
 
         	this.operationList.addOperation("add",addF);
