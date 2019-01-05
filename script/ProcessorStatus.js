@@ -28,7 +28,6 @@ class ProcessorStatus
 		{
 			this.gpRegs[i] = 0;
 		}
-		this.gpRegs[1] = 9;
 
 	}
 
@@ -38,8 +37,8 @@ class ProcessorStatus
 		for(var i=0;i<32;i++)
 		{
 				var nomeReg = "r"+i;
-				document.getElementById(nomeReg).innerHTML = this.gpRegs[i];
-				console.log(nomeRef + " = " + this.gpRegs[i]);
+				document.getElementById(nomeReg).innerHTML = "" + this.gpRegs[i];
+				console.log(nomeReg + " = " + this.gpRegs[i]);
 		}
 	}
 }

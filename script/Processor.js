@@ -27,7 +27,7 @@ class Processor{
             if(typeof op[0] === 'string')
         		{
         			var regIntv = op[0].split("r");
-        			var regInt = Number(regInt1v[1]);
+        			var regInt = Number(regIntv[1]);
 
         			var val = Number(op[1]);
 
