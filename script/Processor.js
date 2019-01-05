@@ -14,13 +14,20 @@ class Processor{
         		{
         			var regInt1v = op[0].split("r");
         			var regInt1 = Number(regInt1v[1]);
+				console.log("regint1 = " + regInt1);
 
         			var regInt2v = op[1].split("r");
         			var regInt2 = Number(regInt1v[1]);
+				console.log("regint2 = " + regInt2);
 
-				      var b = procStatus.gpRegs[regInt1] + procStatus.gpRegs[regInt2];
-				      procStatus.gpRegs[regInt1] = b;
-			      }
+				var b = procStatus.gpRegs[regInt1] + procStatus.gpRegs[regInt2];
+				procStatus.gpRegs[regInt1] = b;
+				console.log("b = " + b);		
+			}
+			else
+			{
+				console.log("false");			
+			}				
         	}
 
           var ldiF = function(op,procStatus){
@@ -37,7 +44,7 @@ class Processor{
           }
 
           this.operationList.addOperation("ldi",ldiF)
-        	this.operationList.addOperation("add",addF);
+       	  this.operationList.addOperation("add",addF);
 
 
 
