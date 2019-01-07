@@ -7,7 +7,7 @@ function execProgram()
 	var i,j;
 	for(i=0;i<pArray.length;i++)
 	{
-		console.log(pArray[i]);
+
 		if(pArray[i] == "")
 			break;
 	}

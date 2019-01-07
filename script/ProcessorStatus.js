@@ -38,7 +38,7 @@ class ProcessorStatus
 		{
 				var nomeReg = "r"+i;
 				document.getElementById(nomeReg).innerHTML = "" + this.gpRegs[i];
-				console.log(nomeReg + " = " + this.gpRegs[i]);
+				//console.log(nomeReg + " = " + this.gpRegs[i]); //debug regs
 		}
 	}
 }
