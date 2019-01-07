@@ -9,20 +9,17 @@ class Processor{
         	//add op here
 
         	//add
-        	var addF = function(op,procStatus){
-        		if(typeof op[0] === 'string')
-        		{
-        			var regInt1v = op[0].split("r");
-        			var regInt1 = Number(regInt1v[1]);
-
-
-        			var regInt2v = op[1].split("r");
-        			var regInt2 = Number(regInt1v[1]);
-
-
-				var b = procStatus.gpRegs[regInt1] + procStatus.gpRegs[regInt2];
-				procStatus.gpRegs[regInt1] = b;
-			}				
+        	var addF = function(op,procStatus)
+		{				
+        		var regInt1v = op[0].split("r");
+        		var regInt1 = Number(regInt1v[1]);
+			
+			
+       			var regInt2v = op[1].split("r");
+       			var regInt2 = Number(regInt2v[1]);
+	
+			var b = Number(procStatus.gpRegs[regInt1]) + Number(procStatus.gpRegs[regInt2]);
+			procStatus.gpRegs[regInt1] = b;				
         	}
 
           var ldiF = function(op,procStatus){
@@ -62,8 +59,8 @@ class Processor{
   			op[0] = line[0];
   			op[1] = line[1];
   			this.procStatus.PC = this.procStatus.PC + 1;
-        this.execInstruction(command,op);
-			  this.procStatus.updateUI();
+		        this.execInstruction(command,op);			  
+			this.procStatus.updateUI();
   		}
 
   	}

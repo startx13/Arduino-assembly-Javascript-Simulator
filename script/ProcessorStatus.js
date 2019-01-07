@@ -2,7 +2,8 @@ class ProcessorStatus
 {
 	/*
 	 *https://en.wikipedia.org/wiki/Atmel_AVR_instruction_set
-	 *C Carry flag. This is a borrow flag on subtracts. The INC and DEC instructions do not modify the carry flag, so they may be used to loop 		 *over multi-byte arithmetic operations.[1]
+	 *C Carry flag. This is a borrow flag on subtracts. The INC and DEC instructions do not modify the carry flag, so they may be used to loop 		 
+	 *over multi-byte arithmetic operations.[1]
 	 *Z Zero flag. Set to 1 when an arithmetic result is zero.
 	 *N Negative flag. Set to a copy of the most significant bit of an arithmetic result.
 	 *V Overflow flag. Set in case of two's complement overflow.
@@ -24,6 +25,7 @@ class ProcessorStatus
 		this.PC = 0;
 		this.SP = 0;
 		this.SREG = 0;
+
 		for(var i=0;i<32;i++)
 		{
 			this.gpRegs[i] = 0;
