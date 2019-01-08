@@ -1,6 +1,21 @@
 <html>
 	<head>
 		<title>Arduino Assembly</title>
+		
+		<style type="text/css">
+			#sinistra { 
+				position: absolute;
+				text-align: left
+			}
+			
+			#destra { 
+				position: relative;
+				text-align: rigth;
+				rigth: 400px
+			}
+			
+		</style>
+	
 	</head>
 
 	<body>
@@ -13,40 +28,57 @@
 		<center><textarea id="program" rows="30" cols="50"></textarea></center>
 		<center><button onclick="execProgram()">Esegui</button></center>
 
-		<table>
-			<tr><td>Registro</td><td>Valore</td></tr>
-			<tr><td>r0</td><td id="r0">0</td></tr>
-			<tr><td>r1</td><td id="r1">0</td></tr>
-			<tr><td>r2</td><td id="r2">0</td></tr>
-			<tr><td>r3</td><td id="r3">0</td></tr>
-			<tr><td>r4</td><td id="r4">0</td></tr>
-			<tr><td>r5</td><td id="r5">0</td></tr>
-			<tr><td>r6</td><td id="r6">0</td></tr>
-			<tr><td>r7</td><td id="r7">0</td></tr>
-			<tr><td>r8</td><td id="r8">0</td></tr>
-			<tr><td>r9</td><td id="r9">0</td></tr>
-			<tr><td>r10</td><td id="r10">0</td></tr>
-			<tr><td>r11</td><td id="r11">0</td></tr>
-			<tr><td>r12</td><td id="r12">0</td></tr>
-			<tr><td>r13</td><td id="r13">0</td></tr>
-			<tr><td>r14</td><td id="r14">0</td></tr>
-			<tr><td>r15</td><td id="r15">0</td></tr>
-			<tr><td>r16</td><td id="r16">0</td></tr>
-			<tr><td>r17</td><td id="r17">0</td></tr>
-			<tr><td>r18</td><td id="r18">0</td></tr>
-			<tr><td>r19</td><td id="r19">0</td></tr>
-			<tr><td>r20</td><td id="r20">0</td></tr>
-			<tr><td>r21</td><td id="r21">0</td></tr>
-			<tr><td>r22</td><td id="r22">0</td></tr>
-			<tr><td>r23</td><td id="r23">0</td></tr>	
-			<tr><td>r24</td><td id="r24">0</td></tr>
-			<tr><td>r25</td><td id="r25">0</td></tr>
-			<tr><td>r26</td><td id="r26">0</td></tr>
-			<tr><td>r27</td><td id="r27">0</td></tr>
-			<tr><td>r28</td><td id="r28">0</td></tr>
-			<tr><td>r29</td><td id="r29">0</td></tr>
-			<tr><td>r30</td><td id="r30">0</td></tr>
-			<tr><td>r31</td><td id="r31">0</td></tr>		
-		</table>
+		<div id="sinistra">
+			<table>
+				<tr><td>Registro</td><td>Valore</td></tr>
+				<tr><td>r0</td><td id="r0">0</td></tr>
+				<tr><td>r1</td><td id="r1">0</td></tr>
+				<tr><td>r2</td><td id="r2">0</td></tr>
+				<tr><td>r3</td><td id="r3">0</td></tr>
+				<tr><td>r4</td><td id="r4">0</td></tr>
+				<tr><td>r5</td><td id="r5">0</td></tr>
+				<tr><td>r6</td><td id="r6">0</td></tr>
+				<tr><td>r7</td><td id="r7">0</td></tr>
+				<tr><td>r8</td><td id="r8">0</td></tr>
+				<tr><td>r9</td><td id="r9">0</td></tr>
+				<tr><td>r10</td><td id="r10">0</td></tr>
+				<tr><td>r11</td><td id="r11">0</td></tr>
+				<tr><td>r12</td><td id="r12">0</td></tr>
+				<tr><td>r13</td><td id="r13">0</td></tr>
+				<tr><td>r14</td><td id="r14">0</td></tr>
+				<tr><td>r15</td><td id="r15">0</td></tr>
+				<tr><td>r16</td><td id="r16">0</td></tr>
+				<tr><td>r17</td><td id="r17">0</td></tr>
+				<tr><td>r18</td><td id="r18">0</td></tr>
+				<tr><td>r19</td><td id="r19">0</td></tr>
+				<tr><td>r20</td><td id="r20">0</td></tr>
+				<tr><td>r21</td><td id="r21">0</td></tr>
+				<tr><td>r22</td><td id="r22">0</td></tr>
+				<tr><td>r23</td><td id="r23">0</td></tr>	
+				<tr><td>r24</td><td id="r24">0</td></tr>
+				<tr><td>r25</td><td id="r25">0</td></tr>
+				<tr><td>r26</td><td id="r26">0</td></tr>
+				<tr><td>r27</td><td id="r27">0</td></tr>
+				<tr><td>r28</td><td id="r28">0</td></tr>
+				<tr><td>r29</td><td id="r29">0</td></tr>
+				<tr><td>r30</td><td id="r30">0</td></tr>
+				<tr><td>r31</td><td id="r31">0</td></tr>		
+			</table>
+		</div>
+		
+		<div id="destra">
+			<table>
+				<tr><td>Flag</td><td>Valore</td>
+				<tr><td>PC</td><td id="PC">0</td></tr>
+				<tr><td>C</td><td id="Carry">0</td></tr>
+				<tr><td>Z</td><td id="Zero">0</td></tr>
+				<tr><td>N</td><td id="Negative">0</td></tr>
+				<tr><td>V</td><td id="Overflow">0</td></tr>
+				<tr><td>S</td><td id="Sign">0</td></tr>
+				<tr><td>H</td><td id="HCarry">0</td></tr>
+				<tr><td>T</td><td id="BitCopy">0</td></tr>
+				<tr><td>I</td><td id="Interrupt">0</td></tr>
+			</table>
+		</div>
 	</body>
 <html>
