@@ -35,12 +35,24 @@ class ProcessorStatus
 
 	updateUI()
 	{
-
+		//GP registers
 		for(var i=0;i<32;i++)
 		{
-				var nomeReg = "r"+i;
-				document.getElementById(nomeReg).innerHTML = "" + this.gpRegs[i];
-				//console.log(nomeReg + " = " + this.gpRegs[i]); //debug regs
+			var nomeReg = "r"+i;
+			document.getElementById(nomeReg).innerHTML = "" + this.gpRegs[i];
+			//console.log(nomeReg + " = " + this.gpRegs[i]); //debug regs
 		}
+		
+		//Flags
+		document.getElementById("PC").innerHTML = "" + this.PC;
+		document.getElementById("Carry").innerHTML = "" + this.flags[0];
+		document.getElementById("Zero").innerHTML = "" + this.flags[1];
+		document.getElementById("Negative").innerHTML = "" + this.flags[2];
+		document.getElementById("Overflow").innerHTML = "" + this.flags[3];
+		document.getElementById("Sign").innerHTML = "" + this.flags[4];
+		document.getElementById("HCarry").innerHTML = "" + this.flags[5];
+		document.getElementById("BitCopy").innerHTML = "" + this.flags[6];
+		document.getElementById("Interrupt").innerHTML = "" + this.flags[7];
+		
 	}
 }
