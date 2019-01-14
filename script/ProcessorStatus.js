@@ -30,6 +30,11 @@ class ProcessorStatus
 		{
 			this.gpRegs[i] = 0;
 		}
+		
+		for(var i=0;i<8;i++)
+		{
+			this.flags[i] = 0;
+		}
 
 	}
 

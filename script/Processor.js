@@ -109,17 +109,20 @@ class Processor{
   		var i=0;
 
   		for(i=0;i<this.prog.length;i++)
-  		{
-  			line = this.prog[i].split(" ");
-  			command = line[0];
-  			line = line[1].split(",");
-  			op[0] = line[0];
-  			op[1] = line[1];
-  			this.procStatus.PC = i;
-		    this.execInstruction(command,op);			  
-			this.procStatus.updateUI();
-			i = this.procStatus.PC;
-  		}
+  		{  			
+			if(this.prog[i][0] != ';')
+			{
+				line = this.prog[i].split(" ");
+		  		command = line[0];
+	  			line = line[1].split(",");
+	  			op[0] = line[0];
+	  			op[1] = line[1];
+	  			this.procStatus.PC = i;
+			    	this.execInstruction(command,op);			  
+				this.procStatus.updateUI();
+				i = this.procStatus.PC;
+			}  		
+		}
 
   	}
 
