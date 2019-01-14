@@ -117,7 +117,7 @@ class Processor{
 	  			line = line[1].split(",");
 	  			op[0] = line[0];
 	  			op[1] = line[1];
-	  			this.procStatus.PC = i;
+	  			this.procStatus.PC = i + 1;
 			    	this.execInstruction(command,op);			  
 				this.procStatus.updateUI();
 				i = this.procStatus.PC;
