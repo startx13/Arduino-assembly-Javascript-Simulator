@@ -49,7 +49,7 @@ this.operationList.addOperation("add",addF);
 Insieme agli operandi viene passato anche un riferimento ad un oggetto procStatus.
 Questo oggetto descrive lo stato del processore quindi conterrà un program counter, le flag, i registri, ecc.
 
-Costruttore dell'oggetto
+Costruttore dell'oggetto:
 ```javascript
 constructor()
 {
