@@ -1,7 +1,7 @@
 # Arduino-assembly-Javascript-Simulator
 Questo programma è un simulatore del microcontrollore di Arduino. Il programma è modulare poichè si possono aggiungere operazioni.
 
-# Aggiunta Operazioni
+## Aggiunta Operazioni
 Una operazione può essere aggiunta semplicemente modificando il file script/Processor.js
 Per aggiungere una operazione bisogna scriverla sottoforma di funzione nella apposita sezione e i cui parametri sono un array di operandi e lo stato del processore. 
 
@@ -29,7 +29,7 @@ this.operationList.addOperation("add",addF);
 ```
 in cui "add" sarà il nome dell'operazione e addF la funzione appena creata.
 
-# Esempio di operazione
+## Esempio di operazione
 
 ```javascript
 var addF = function(op,procStatus)
@@ -44,7 +44,7 @@ var addF = function(op,procStatus)
 
 this.operationList.addOperation("add",addF);
 ```
-# Oggetto procStatus
+## Oggetto procStatus
 
 Insieme agli operandi viene passato anche un riferimento ad un oggetto procStatus.
 Questo oggetto descrive lo stato del processore quindi conterrà un program counter, le flag, i registri, ecc.
