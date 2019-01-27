@@ -1,35 +1,40 @@
 # Arduino-assembly-Javascript-Simulator
-Questo programma è un simulatore del microcontrollore di Arduino. Il programma è modulare poichè si possono aggiungere operazioni.
+Questo programma è un simulatore (emulatore) del microcontrollore di Arduino Uno. Esso permette di eseguire all'interno di un browser un programma scritto in linguaggio Assembly per il microcontrollore ATmega328P.
+Il programma è modulare, cioè è fatto in modo che sia semplice aggiungere una nuova istruzione Assembly al set di istruzioni attualmente eseguibili da questo emulatore.
 
-## Aggiunta Operazioni
-Una operazione può essere aggiunta semplicemente modificando il file script/Processor.js
-Per aggiungere una operazione bisogna scriverla sottoforma di funzione nella apposita sezione e i cui parametri sono un array di operandi e lo stato del processore. 
+## Aggiungere una nuova Istruzione
+Per aggiungere una nuova istruzione Assembly si deve modificare il file script/Processor.js
+Ogni diversa istruzione Assembly è descritta come una diversa funzione nel file script/Processor.js, in una apposita  sezione. I parametri di ognuna di queste diverse funzioni sono due: un array (che contiene tutti gli operandi) e un oggetto (che rappresenta lo stato del processore). 
 
-Ad esempio
+Ad esempio, se si desidera aggiungere l'istruzione assembly `add` si dovrà aggiungere questo codice:
 ```javascript
 var addF = function(op,procStatus){...} 
 ```
-è una scrittura valida.
 
-Gli operandi sono un array con due indici, quindi se nel codice abbiamo, ad esempio
+Continuando l'esempio, si deve conoscere la sintassi in Assembly di `add`, che si deve usare in questo modo:
 ```javascript
-r0,r1
+add(r0,r1)
 ```
-L'array sarà
+
+Quindi si devono aggiungere anche i due operandi della funzione `add`, che sono due registri `r0` e `r1`. Questi devono essere contenuti in un array `op`, con due indici:
 ```javascript
-op[0] == "r0"
-e
-op[1] == "r1"
+op[0] // op[0] == "r0"
+op[1] // op[1] == "r1"
+```
+
+Si devono poi aggiungere le istruzioni da eseguire nel caso di `add`
+```
+var b = Number( x + y )
 ```
 
 Dopo aver scritto la funzione questa va aggiunta alla lista delle operazioni disponibili scrivendo nell'apposita sezione
-
 ```javascript
 this.operationList.addOperation("add",addF);
 ```
+
 in cui "add" sarà il nome dell'operazione e addF la funzione appena creata.
 
-## Esempio di operazione
+## Esempio completo
 
 ```javascript
 var addF = function(op,procStatus)
