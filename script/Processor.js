@@ -117,7 +117,7 @@ class Processor{
 	  			line = line[1].split(",");
 	  			op[0] = line[0];
 	  			op[1] = line[1];
-	  			this.procStatus.PC = i; //+ 1;
+	  			this.procStatus.PC = i; 
 			    	this.execInstruction(command,op);			  
 				this.procStatus.updateUI();
 				i = this.procStatus.PC;
@@ -134,14 +134,35 @@ class Processor{
 				
 		if(this.prog.length > this.procStatus.PC)
 		{
-			line = this.prog[this.procStatus.PC].split(" ");
-			command = line[0];
-		  	line = line[1].split(",");
-		  	op[0] = line[0];
-		  	op[1] = line[1];
-		  	this.procStatus.PC += 1;
-			this.execInstruction(command,op);			  
-			this.procStatus.updateUI();
+			if(this.prog[this.procStatus.PC][0] != ';'){
+				line = this.prog[this.procStatus.PC].split(" ");
+				command = line[0];
+			  	line = line[1].split(",");
+			  	op[0] = line[0];
+			  	op[1] = line[1];
+			  	this.procStatus.PC += 1;
+				this.execInstruction(command,op);			  
+				this.procStatus.updateUI();
+			}
+			else
+			{
+				//TOTO: Risolvere problema con i commenti
+				var t = false;
+				for(var i = this.procStatus.SP; i<this.prog.length && !t;i++)
+				{
+					if(this.prog[i][0] != ';'){
+						line = this.prog[i].split(" ");
+						command = line[0];
+					  	line = line[1].split(",");
+					  	op[0] = line[0];
+					  	op[1] = line[1];
+					  	this.procStatus.PC += 1;
+						this.execInstruction(command,op);			  
+						this.procStatus.updateUI();
+						t=true;
+					}
+				}	
+			}
 		}	
 	}
 	
