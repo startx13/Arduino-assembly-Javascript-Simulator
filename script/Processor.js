@@ -161,6 +161,7 @@ class Processor{
 						this.procStatus.updateUI();
 						t=true;
 					}
+					this.procStatus.SP = i;
 				}	
 			}
 		}	
