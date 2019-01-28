@@ -1,4 +1,5 @@
 var proc = null;
+
 function execProgram()
 {
 
@@ -13,6 +14,32 @@ function execProgram()
 	proc = new Processor(pArray);
 	proc.start();
 
+}
+
+function stepProgram()
+{
+	if(proc == null)
+	{
+		var program = document.getElementById("program").value;
+		var pArray = programToArray(program);
+		var i,j;
+		for(i=0;i<pArray.length;i++)
+		{
+			if(pArray[i] == "")
+				break;
+		}
+		proc = new Processor(pArray);
+	}	
+	proc.step();
+
+}
+
+function reset()
+{
+	if(proc != null)
+	{	
+		proc.reset();
+	}
 }
 
 function programToArray(program)

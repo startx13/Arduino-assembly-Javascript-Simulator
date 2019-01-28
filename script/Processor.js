@@ -101,7 +101,7 @@ class Processor{
 
 
 
-    start()
+    	start()
   	{
   		var line;
   		var command;
@@ -117,7 +117,7 @@ class Processor{
 	  			line = line[1].split(",");
 	  			op[0] = line[0];
 	  			op[1] = line[1];
-	  			this.procStatus.PC = i + 1;
+	  			this.procStatus.PC = i; //+ 1;
 			    	this.execInstruction(command,op);			  
 				this.procStatus.updateUI();
 				i = this.procStatus.PC;
@@ -126,8 +126,32 @@ class Processor{
 
   	}
 
-	  execInstruction(instr,op)
-	  {
+	step()
+	{
+		var line;
+  		var command;
+  		var op = new Array(2);
+				
+		if(this.prog.length > this.procStatus.PC)
+		{
+			line = this.prog[this.procStatus.PC].split(" ");
+			command = line[0];
+		  	line = line[1].split(",");
+		  	op[0] = line[0];
+		  	op[1] = line[1];
+		  	this.procStatus.PC += 1;
+			this.execInstruction(command,op);			  
+			this.procStatus.updateUI();
+		}	
+	}
+	
+	reset()
+	{	
+		this.procStatus.reset();		
+	}		
+	
+	execInstruction(instr,op)
+	{
 		    this.operationList.exec(instr,op,this.procStatus);
   	}
 }
