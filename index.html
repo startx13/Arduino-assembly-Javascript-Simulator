@@ -1,24 +1,60 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Arduino Assembly</title>
 		
 		<style type="text/css">
-			#sinistra { 
-				border: solid 1px green;
-				float: left;
-				width: 33%
+			body {
+					font-family:monospace,monospace;
+					font-size:1em;
+				}
+				
+			textarea {
+				width: 33%;
+				margin: 1px;
+				padding: 1px;
 			}
 			
+			#sinistra, #sinistra2 { 
+				
+				border: solid 1px green;
+				float: left;
+				width: 33%;
+				max-width: 15em
+			}
+			
+			#sinistra2 table, #sinistra table, #destra table {
+				border-collapse: collapse;
+				margin: 1px;
+				padding: 1px;
+			}
+			
+						
+			#sinistra table, th, td {
+					border: 1px solid black;
+			} 
+			
+			#sinistra2 table, th, td {
+					border: 1px solid black;
+			} 		
 			#destra { 
 				border: solid 1px green;
 				float: left;
-				width: 33%
+				width: 33%;
+				max-width: 15em
 			}
 			
 			#program{
 				border: solid 1px black;
 				float: left;
-				width: 33%
+				width: 33%;
+				max-width: 15em
+			}
+			
+			#pulsanti
+			{	
+				padding: 2px;
+				margin: 2px;
 			}
 			
 		</style>
@@ -32,11 +68,13 @@
 		<script src="script/main.js"></script>
 		<script src="script/Operation.js"></script>
 
-		<center><textarea id="program" rows="30" cols="50"></textarea></center>
-		<center><button onclick="execProgram()">Esegui</button></center>
-		<center><button onclick="stepProgram()">Step</button></center>
-		<center><button onclick="reset()">Reset</button></center>
-
+		<textarea id="program" rows="30" cols="30"></textarea>
+		<div id="pulsanti">
+			<button onclick="execProgram()">Esegui</button>
+			<button onclick="stepProgram()">Step</button>
+			<button onclick="reset()">Reset</button>
+		</div>
+		
 		<div id="sinistra">
 			<table>
 				<tr><td>Registro</td><td>Valore</td></tr>
@@ -56,6 +94,12 @@
 				<tr><td>r13</td><td id="r13">0</td></tr>
 				<tr><td>r14</td><td id="r14">0</td></tr>
 				<tr><td>r15</td><td id="r15">0</td></tr>
+			</table>
+		</div>
+		
+		<div id="sinistra2">		
+			<table>
+				<tr><td>Registro</td><td>Valore</td></tr>				
 				<tr><td>r16</td><td id="r16">0</td></tr>
 				<tr><td>r17</td><td id="r17">0</td></tr>
 				<tr><td>r18</td><td id="r18">0</td></tr>
@@ -74,7 +118,7 @@
 				<tr><td>r31</td><td id="r31">0</td></tr>		
 			</table>
 		</div>
-		
+					
 		<div id="destra">
 			<table>
 				<tr><td>Flag</td><td>Valore</td>
@@ -90,4 +134,4 @@
 			</table>
 		</div>
 	</body>
-<html>
+</html>
