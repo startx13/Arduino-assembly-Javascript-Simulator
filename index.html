@@ -13,11 +13,7 @@
 		<script src="script/Operation.js"></script>
 
 		<textarea id="program" rows="30" cols="30"></textarea>
-		<div id="pulsanti">
-			<button onclick="execProgram()">Esegui</button>
-			<button onclick="stepProgram()">Step</button>
-			<button onclick="reset()">Reset</button>
-		</div>
+		
 		
 		<div id="sinistra">
 			<table>
@@ -62,7 +58,7 @@
 				<tr><td>r31</td><td id="r31">0</td></tr>		
 			</table>
 		</div>
-					
+			
 		<div id="destra">
 			<table>
 				<tr><td>Flag</td><td>Valore</td>
@@ -76,6 +72,12 @@
 				<tr><td>T</td><td id="BitCopy">0</td></tr>
 				<tr><td>I</td><td id="Interrupt">0</td></tr>
 			</table>
+		</div>
+		
+		<div id="pulsanti">
+			<button onclick="execProgram()">Esegui</button>
+			<button onclick="stepProgram()">Step</button>
+			<button onclick="reset()">Reset</button>
 		</div>
 	</body>
 </html>
