@@ -56,23 +56,30 @@ Questo oggetto descrive lo stato del processore quindi conterrà un program coun
 
 Costruttore dell'oggetto:
 ```javascript
-constructor()
-{
-  this.flags = new Array(8); //Flag del processore
-  this.gpRegs = new Array(32); //R0-->R31 registri generici
-  this.PC = 0; //Program Counter
-  this.SP = 0; //Stack Pointer
-  this.SREG = 0; 
-
-  for(var i=0;i<32;i++)
+  constructor()
   {
-    this.gpRegs[i] = 0;
-  }
-  
-  for(var i=0;i<8;i++)
-  {
-    this.flags[i] = 0;
-  }
-
+    this.flags = new Array(8);
+    this.gpRegs = new Array(32);//new Array(32); //R0-->R31
+    this.PC = 0;
+    this.SP = 0;
+    this.SREG = 0;
+    this.hex = false;		
+    
+    for(var i=0;i<32;i++)
+    {
+      this.gpRegs[i] = 0;
+    }
+    
+    for(var i=0;i<8;i++)
+    {
+      this.flags[i] = 0;
+    }
 }
 ```
+## Modifica registri (API di procStatus)
+
+Per modificare i registri è necessario usare le funzioni contenute nell'oggetto procStatus poichè
+queste sono "bit safe" (fanno rientrare i valori nei limiti di arduino) e modificano automaticamente (dove necessario) le flag del processore.
+API disponibili: <br>
+`setReg(numReg,val)` permette di modificare i registri nei limiti di arduino
+
