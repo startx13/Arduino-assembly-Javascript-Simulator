@@ -38,7 +38,7 @@ function reset()
 {
 	if(proc != null)
 	{	
-		proc.reset();
+		proc.procStatus.reset();
 	}
 }
 

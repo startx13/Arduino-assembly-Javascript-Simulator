@@ -16,8 +16,8 @@ class Processor{
 			var regInt2v = op[1].split("r");
 			var regInt2 = Number(regInt2v[1]);
 	
-			var b = Number(procStatus.gpRegs[regInt1]) + Number(procStatus.gpRegs[regInt2]);
-			procStatus.gpRegs[regInt1] = b;				
+			var b = Number(procStatus.getReg(regInt1)) + Number(procStatus.getReg(regInt2));
+			procStatus.setReg(regInt1,b);				
 		}
 
 		var sbcF = function(op,procStatus)
@@ -28,68 +28,67 @@ class Processor{
 			var regInt2v = op[1].split("r");
 			var regInt2 = Number(regInt2v[1]);
 	
-			var b = Number(procStatus.gpRegs[regInt1]) - Number(procStatus.gpRegs[regInt2]);
-			procStatus.gpRegs[regInt1] = b;				
+			var b = Number(procStatus.getReg(regInt1)) - Number(procStatus.getReg(regInt2));
+			procStatus.setReg(regInt1,b);				
 		}
 		
 		var movF = function(op,procStatus)
 		{				
-        	var regInt1v = op[0].split("r");
-        	var regInt1 = Number(regInt1v[1]);
+        		var regInt1v = op[0].split("r");
+        		var regInt1 = Number(regInt1v[1]);
 			
-		    var regInt2v = op[1].split("r");
-       		var regInt2 = Number(regInt2v[1]);
+			var regInt2v = op[1].split("r");
+			var regInt2 = Number(regInt2v[1]);
 	
-			var b = Number(procStatus.gpRegs[regInt2]);
-			procStatus.gpRegs[regInt1] = b;				
-        }
+			var b = Number(procStatus.getReg(regInt2));
+			procStatus.setReg(regInt1,b);				
+		}
 		
-        var ldiF = function(op,procStatus)
+		var ldiF = function(op,procStatus)
 		{
-            if(typeof op[0] === 'string')
-        		{
-        			var regIntv = op[0].split("r");
-        			var regInt = Number(regIntv[1]);
+			if(typeof op[0] === 'string')
+			{
+				var regIntv = op[0].split("r");
+				var regInt = Number(regIntv[1]);
 
-        			var val = Number(op[1]);
-
-				    procStatus.gpRegs[regInt] = val;
-			    }
-        }
+				var val = Number(op[1]);
+				procStatus.setReg(regInt,val);
+			}
+		}
 
 		var incF = function(op,procStatus)
 		{
-            if(typeof op[0] === 'string')
-        		{
-        			var regIntv = op[0].split("r");
-        			var regInt = Number(regIntv[1]);
+			if(typeof op[0] === 'string')
+			{
+				var regIntv = op[0].split("r");
+ 				var regInt = Number(regIntv[1]);
 
-        			var val = Number(op[1]);
+				var val = Number(op[1]);
 
-				    procStatus.gpRegs[regInt] = procStatus.gpRegs[regInt] + 1;
-			    }
-        }
+				procStatus.setReg(regInt) = procStatus.getReg(regInt) + 1;
+			}
+		}
 		
 		var negF = function(op,procStatus)
 		{
-            if(typeof op[0] === 'string')
-        		{
-        			var regIntv = op[0].split("r");
-        			var regInt = Number(regIntv[1]);
+			if(typeof op[0] === 'string')
+			{
+				var regIntv = op[0].split("r");
+				var regInt = Number(regIntv[1]);
 
-        			var val = Number(op[1]);
+				var val = Number(op[1]);
 
-				    procStatus.gpRegs[regInt] = procStatus.gpRegs[regInt] * (-1);
-			    }
-        }
+				procStatus.setReg(regInt) = procStatus.getReg(regInt) * (-1);
+			}
+		}
 		
 		var jmpF = function(op,procStatus)
 		{
 			procStatus.PC = Number(op[0]);
 		}
 		
-        this.operationList.addOperation("ldi",ldiF)
-       	this.operationList.addOperation("add",addF);
+		this.operationList.addOperation("ldi",ldiF)
+		this.operationList.addOperation("add",addF);
 		this.operationList.addOperation("sbc",sbcF);
 		this.operationList.addOperation("mov",movF);
 		this.operationList.addOperation("inc",incF);
@@ -165,11 +164,6 @@ class Processor{
 			}
 		}	
 	}
-	
-	reset()
-	{	
-		this.procStatus.reset();		
-	}		
 	
 	execInstruction(instr,op)
 	{

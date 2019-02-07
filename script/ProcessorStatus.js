@@ -108,6 +108,7 @@ class ProcessorStatus
 		document.getElementById("Interrupt").innerHTML = "" + this.flags[7];
 	}
 
+	//API
 	setReg(numReg,val)
 	{
 		if(numReg >=0 || numReg <32)
@@ -123,6 +124,20 @@ class ProcessorStatus
 		}
 	}
 
+	getReg(numReg)
+	{
+		if(numReg >=0 || numReg < 32)
+		{
+			return gpRegs[numReg];		
+		}
+		else
+		{
+			return 0;		
+		}
+	}
+	
+	//FINE API
+	
 	reset()
 	{
 		
