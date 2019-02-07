@@ -42,18 +42,12 @@ function reset()
 	}
 }
 
-function hexBox()
-{
-	if(proc != null)
-	{
-		proc.procStatus.hex = document.getElementById("hex").value;
-	}
-}
 
-function updateUI()
+function cambiaValori()
 {
 	if(proc != null)
 	{
+		proc.procStatus.hex = !proc.procStatus.hex;
 		proc.procStatus.updateUI();
 	}
 }
@@ -65,5 +59,25 @@ function programToArray(program)
 	var parsedProgram = new Array(100);
 
 	parsedProgram = program.split('\n');
-	return parsedProgram;
+
+	var cleanedProgram = new Array(100);	
+	var trovato = false;
+	var oldJ = 0;
+
+	for(var i = 0;i<cleanedProgram.length;i++)
+	{ 		
+		for(var j = oldJ;j<parsedProgram.length && !trovato;j++)
+		{
+			if(parsedProgram[j][0] != ';' && !(parsedProgram[j] === "") && !(parsedProgram[j] === " ") && 
+			   !(parsedProgram[j] === "") && !(parsedProgram[j] === "\n"))
+			{
+				cleanedProgram[i] = parsedProgram[j];
+				oldJ = j + 1 ;				
+				trovato = true;			
+			}		
+		}
+		trovato = false;
+	}
+
+	return cleanedProgram;
 }

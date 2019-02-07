@@ -115,11 +115,11 @@ class ProcessorStatus
 		{
 			if(val <256)
 			{						
-				gpRegs[numReg] = val;		
+				this.gpRegs[numReg] = val;		
 			}
 			else
 			{
-				gpRegs[numReg] = 255;			
+				this.gpRegs[numReg] = 255;			
 			}		
 		}
 	}
@@ -128,7 +128,7 @@ class ProcessorStatus
 	{
 		if(numReg >=0 || numReg < 32)
 		{
-			return gpRegs[numReg];		
+			return this.gpRegs[numReg];		
 		}
 		else
 		{

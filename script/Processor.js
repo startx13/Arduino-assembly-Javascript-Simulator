@@ -105,23 +105,23 @@ class Processor{
   		var command;
   		var op = new Array(2);
   		var i=0;
-
-  		for(i=0;i<this.prog.length;i++)
-  		{  			
-			if(this.prog[i][0] != ';')
-			{
-				line = this.prog[i].split(" ");
-		  		command = line[0];
-	  			line = line[1].split(",");
-	  			op[0] = line[0];
-	  			op[1] = line[1];
-	  			this.procStatus.PC = i; 
-			    	this.execInstruction(command,op);			  
+		
+		
+					
+		for(i=0;i<this.prog.length-1;i++)
+  		{  		
+			line = this.prog[i].split(" ");				
+			if(line[0] != ""){							
+				command = line[0];
+			  	line = line[1].split(",");
+			  	op[0] = line[0];
+			  	op[1] = line[1];
+				this.procStatus.PC = i; 
+				this.execInstruction(command,op);			  
 				this.procStatus.updateUI();
-				i = this.procStatus.PC;
-			}  		
+				i = this.procStatus.PC; 		
+			}
 		}
-
   	}
 
 	step()
@@ -129,40 +129,18 @@ class Processor{
 		var line;
   		var command;
   		var op = new Array(2);
-				
-		if(this.prog.length > this.procStatus.PC)
+		line = this.prog[this.procStatus.PC].split(" ");		
+		
+		if(line != "")
 		{
-			if(this.prog[this.procStatus.PC][0] != ';'){
-				line = this.prog[this.procStatus.PC].split(" ");
-				command = line[0];
-			  	line = line[1].split(",");
-			  	op[0] = line[0];
-			  	op[1] = line[1];
-			  	this.procStatus.PC += 1;
-				this.execInstruction(command,op);			  
-				this.procStatus.updateUI();
-			}
-			else
-			{
-				//TOTO: Risolvere problema con i commenti
-				var t = false;
-				for(var i = this.procStatus.SP; i<this.prog.length && !t;i++)
-				{
-					if(this.prog[i][0] != ';'){
-						line = this.prog[i].split(" ");
-						command = line[0];
-					  	line = line[1].split(",");
-					  	op[0] = line[0];
-					  	op[1] = line[1];
-					  	this.procStatus.PC += 1;
-						this.execInstruction(command,op);			  
-						this.procStatus.updateUI();
-						t=true;
-					}
-					this.procStatus.SP = i;
-				}	
-			}
-		}	
+			command = line[0];
+			line = line[1].split(",");
+		  	op[0] = line[0];
+		  	op[1] = line[1];
+		  	this.procStatus.PC += 1;
+			this.execInstruction(command,op);			  
+			this.procStatus.updateUI();
+		}
 	}
 	
 	execInstruction(instr,op)
