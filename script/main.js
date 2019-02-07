@@ -42,6 +42,22 @@ function reset()
 	}
 }
 
+function hexBox()
+{
+	if(proc != null)
+	{
+		proc.procStatus.hex = document.getElementById("hex").value;
+	}
+}
+
+function updateUI()
+{
+	if(proc != null)
+	{
+		proc.procStatus.updateUI();
+	}
+}
+
 function programToArray(program)
 {
 	var i;
