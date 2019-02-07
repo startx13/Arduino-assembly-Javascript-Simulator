@@ -78,7 +78,7 @@ Costruttore dell'oggetto:
 ```
 ## Modifica registri (API di procStatus)
 
-Per modificare i registri è necessario usare le funzioni contenute nell'oggetto procStatus poichè
+Per modificare i registri è necessario usare, dove possibile, le funzioni contenute nell'oggetto procStatus poichè
 queste sono "bit safe" (fanno rientrare i valori nei limiti di arduino) e modificano automaticamente (dove necessario) le flag del processore.
 API disponibili: <br>
 - `setReg(numReg,val)` permette di modificare i registri nei limiti di arduino
