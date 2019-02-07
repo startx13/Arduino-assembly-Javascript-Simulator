@@ -1,9 +1,11 @@
 var proc = null;
+var pl = 0;
 
 function execProgram()
 {
 
 	var program = document.getElementById("program").value;
+	pl = 0;	
 	var pArray = programToArray(program);
 	var i,j;
 	for(i=0;i<pArray.length;i++)
@@ -11,7 +13,7 @@ function execProgram()
 		if(pArray[i] == "")
 			break;
 	}
-	proc = new Processor(pArray);
+	proc = new Processor(pArray,pl);
 	proc.start();
 
 }
@@ -21,6 +23,7 @@ function stepProgram()
 	if(proc == null)
 	{
 		var program = document.getElementById("program").value;
+		pl = 0;		
 		var pArray = programToArray(program);
 		var i,j;
 		for(i=0;i<pArray.length;i++)
@@ -28,7 +31,7 @@ function stepProgram()
 			if(pArray[i] == "")
 				break;
 		}
-		proc = new Processor(pArray);
+		proc = new Processor(pArray,pl);
 	}	
 	proc.step();
 
@@ -72,6 +75,7 @@ function programToArray(program)
 			   !(parsedProgram[j] === "") && !(parsedProgram[j] === "\n"))
 			{
 				cleanedProgram[i] = parsedProgram[j];
+				pl++;
 				oldJ = j + 1 ;				
 				trovato = true;			
 			}		

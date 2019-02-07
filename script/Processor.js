@@ -1,7 +1,8 @@
 class Processor{
-	constructor(program)
+	constructor(program,pl)
 	{
 		this.prog = program;
+		this.pl = pl;
 		//memory = new Memory(program);
 		this.procStatus = new ProcessorStatus();
 		this.operationList = new Operation();
@@ -65,7 +66,7 @@ class Processor{
 
 				var val = Number(op[1]);
 
-				procStatus.setReg(regInt) = procStatus.getReg(regInt) + 1;
+				procStatus.setReg(regInt, procStatus.getReg(regInt) + 1);
 			}
 		}
 		
@@ -78,7 +79,7 @@ class Processor{
 
 				var val = Number(op[1]);
 
-				procStatus.setReg(regInt) = procStatus.getReg(regInt) * (-1);
+				procStatus.setReg(regInt, procStatus.getReg(regInt) * (-1));
 			}
 		}
 		
@@ -108,10 +109,11 @@ class Processor{
 		
 		
 					
-		for(i=0;i<this.prog.length-1;i++)
+		for(i=0;i<this.pl;i++)
   		{  		
 			line = this.prog[i].split(" ");				
-			if(line[0] != ""){							
+			if(this.procStatus.PC < this.pl)
+			{							
 				command = line[0];
 			  	line = line[1].split(",");
 			  	op[0] = line[0];
@@ -128,11 +130,11 @@ class Processor{
 	{
 		var line;
   		var command;
-  		var op = new Array(2);
-		line = this.prog[this.procStatus.PC].split(" ");		
+  		var op = new Array(2);		
 		
-		if(line != "")
+		if(this.procStatus.PC < this.pl)
 		{
+			line = this.prog[this.procStatus.PC].split(" ");
 			command = line[0];
 			line = line[1].split(",");
 		  	op[0] = line[0];
