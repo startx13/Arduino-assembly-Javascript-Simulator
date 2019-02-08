@@ -18,6 +18,12 @@ class Processor{
 			var regInt2 = Number(regInt2v[1]);
 	
 			var b = Number(procStatus.getReg(regInt1)) + Number(procStatus.getReg(regInt2));
+
+			if(b == 0)
+			{
+				procStatus.flags(1) = 1;
+			}			
+			
 			procStatus.setReg(regInt1,b);				
 		}
 
@@ -30,6 +36,12 @@ class Processor{
 			var regInt2 = Number(regInt2v[1]);
 	
 			var b = Number(procStatus.getReg(regInt1)) - Number(procStatus.getReg(regInt2));
+
+			if(b == 0)
+			{
+				procStatus.flags(1) = 1;
+			}			
+					
 			procStatus.setReg(regInt1,b);				
 		}
 		

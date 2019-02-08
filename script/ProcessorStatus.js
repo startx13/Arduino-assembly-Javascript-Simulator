@@ -94,10 +94,10 @@ class ProcessorStatus
 			var nomeReg = "r"+i;
 			document.getElementById(nomeReg).innerHTML = "" + this.intToHex(this.gpRegs[i]);
 			//console.log(nomeReg + " = " + this.gpRegs[i]); //debug regs
-		}
-		
+		}		
+
 		//Flags
-		document.getElementById("PC").innerHTML = "" + this.PC;
+		document.getElementById("PC").innerHTML = "" + this.intToHex(this.PC);
 		document.getElementById("Carry").innerHTML = "" + this.flags[0];
 		document.getElementById("Zero").innerHTML = "" + this.flags[1];
 		document.getElementById("Negative").innerHTML = "" + this.flags[2];
