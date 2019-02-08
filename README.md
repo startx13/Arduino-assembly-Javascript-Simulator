@@ -13,7 +13,7 @@ var addF = function(op,procStatus){...}
 
 Continuando l'esempio, si deve conoscere la sintassi in Assembly di `add`, che si deve usare in questo modo:
 ```javascript
-add(r0,r1)
+add r0,r1
 ```
 
 Quindi si devono aggiungere anche i due operandi della funzione `add`, che sono due registri `r0` e `r1`. Questi devono essere contenuti in un array `op`, con due indici:
@@ -24,7 +24,7 @@ op[1] // op[1] == "r1"
 
 Si devono poi aggiungere le istruzioni da eseguire nel caso di `add`
 ```
-var b = Number( x + y )
+var b = Number(x) + Number(y) 
 ```
 
 Dopo aver scritto la funzione questa va aggiunta alla lista delle operazioni disponibili scrivendo nell'apposita sezione
@@ -38,14 +38,22 @@ in cui "add" sarà il nome dell'operazione e addF la funzione appena creata.
 
 ```javascript
 var addF = function(op,procStatus)
-{				
-  var regInt1v = op[0].split("r");
-  var regInt1 = Number(regInt1v[1]);
-  var regInt2v = op[1].split("r");
-  var regInt2 = Number(regInt2v[1]);
-  var b = Number(procStatus.gpRegs[regInt1]) + Number(procStatus.gpRegs[regInt2]);
-  procStatus.gpRegs[regInt1] = b;				
-}
+		{				
+			var regInt1v = op[0].split("r");
+			var regInt1 = Number(regInt1v[1]);
+			
+			var regInt2v = op[1].split("r");
+			var regInt2 = Number(regInt2v[1]);
+	
+			var b = Number(procStatus.getReg(regInt1)) + Number(procStatus.getReg(regInt2));
+
+			if(b == 0)
+			{
+				procStatus.flags[1] = 1;
+			}			
+			
+			procStatus.setReg(regInt1,b);				
+		}
 
 this.operationList.addOperation("add",addF);
 ```
