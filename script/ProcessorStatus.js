@@ -47,7 +47,7 @@ class ProcessorStatus
 		}
 		else		
 		{
-			this.flags[4] = true;		
+			this.flags[4] = false;		
 		}
 
 		if(!this.hex)
