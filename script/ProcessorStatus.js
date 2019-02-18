@@ -41,13 +41,13 @@ class ProcessorStatus
 
 	updateUI()
 	{
-		if(this.gpRegs[2] || this.gpRegs[3])
+		if(this.flags[2] || this.flags[3])
 		{
-			this.gpRegs[4] = true;
+			this.flags[4] = true;
 		}
 		else		
 		{
-			this.gpRegs[4] = true;		
+			this.flags[4] = true;		
 		}
 
 		if(!this.hex)
