@@ -2,15 +2,15 @@ class ProcessorStatus
 {
 	/*
 	 *https://en.wikipedia.org/wiki/Atmel_AVR_instruction_set
-	 *C Carry flag. This is a borrow flag on subtracts. The INC and DEC instructions do not modify the carry flag, so they may be used to loop 		 
+	 *0 - C Carry flag. This is a borrow flag on subtracts. The INC and DEC instructions do not modify the carry flag, so they may be used to loop 		 
 	 *over multi-byte arithmetic operations.[1]
-	 *Z Zero flag. Set to 1 when an arithmetic result is zero.
-	 *N Negative flag. Set to a copy of the most significant bit of an arithmetic result.
-	 *V Overflow flag. Set in case of two's complement overflow.
-	 *S Sign flag. Unique to AVR, this is always N⊕V, and shows the true sign of a comparison.
-	 *H Half-carry flag. This is an internal carry from additions and is used to support BCD arithmetic.
-	 *T Bit copy. Special bit load and bit store instructions use this bit.
-	 *I Interrupt flag. Set when interrupts are enabled.
+	 *1 - Z Zero flag. Set to 1 when an arithmetic result is zero.
+	 *2 - N Negative flag. Set to a copy of the most significant bit of an arithmetic result.
+	 *3 - V Overflow flag. Set in case of two's complement overflow.
+	 *4 - S Sign flag. Unique to AVR, this is always N⊕V, and shows the true sign of a comparison.
+	 *5 - H Half-carry flag. This is an internal carry from additions and is used to support BCD arithmetic.
+	 *6 - T Bit copy. Special bit load and bit store instructions use this bit.
+	 *7 - I Interrupt flag. Set when interrupts are enabled.
 	*/
 	//var flags;
 	//var gpRegs; 	//8bit!! max 255
@@ -21,7 +21,7 @@ class ProcessorStatus
 	constructor()
 	{
 		this.flags = new Array(8);
-		this.gpRegs = new Array(32);//new Array(32); //R0-->R31
+		this.gpRegs = new Array(32); //R0-->R31
 		this.PC = 0;
 		this.SP = 0;
 		this.SREG = 0;
@@ -34,13 +34,22 @@ class ProcessorStatus
 		
 		for(var i=0;i<8;i++)
 		{
-			this.flags[i] = 0;
+			this.flags[i] = false;
 		}
 
 	}
 
 	updateUI()
 	{
+		if(this.gpRegs[2] || this.gpRegs[3])
+		{
+			this.gpRegs[4] = true;
+		}
+		else		
+		{
+			this.gpRegs[4] = true;		
+		}
+
 		if(!this.hex)
 		{
 			this.updateUIDec();		
@@ -49,6 +58,7 @@ class ProcessorStatus
 		{
 			this.updateUIHex();		
 		}
+
 	}
 
 	updateUIDec()

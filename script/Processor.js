@@ -21,7 +21,7 @@ class Processor{
 
 			if(b == 0)
 			{
-				procStatus.flags[1] = 1;
+				procStatus.flags[1] = true;
 			}			
 			
 			procStatus.setReg(regInt1,b);				
@@ -39,7 +39,7 @@ class Processor{
 
 			if(b == 0)
 			{
-				procStatus.flags[1] = 1;
+				procStatus.flags[1] = true;
 			}			
 					
 			procStatus.setReg(regInt1,b);				
