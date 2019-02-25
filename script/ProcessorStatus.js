@@ -20,11 +20,10 @@ class ProcessorStatus
 
 	constructor()
 	{
-		this.flags = new Array(8);
 		this.gpRegs = new Array(32); //R0-->R31
 		this.PC = 0;
 		this.SP = 0;
-		this.SREG = 0;
+		this.SREG = new Array(8);;
 		this.hex = false;		
 
 		for(var i=0;i<32;i++)
@@ -34,20 +33,20 @@ class ProcessorStatus
 		
 		for(var i=0;i<8;i++)
 		{
-			this.flags[i] = false;
+			this.SREG[i] = false;
 		}
 
 	}
 
 	updateUI()
 	{
-		if(this.flags[2] || this.flags[3])
+		if(this.SREG[2] || this.SREG[3])
 		{
-			this.flags[4] = true;
+			this.SREG[4] = true;
 		}
 		else		
 		{
-			this.flags[4] = false;		
+			this.SREG[4] = false;		
 		}
 
 		if(!this.hex)
@@ -73,14 +72,14 @@ class ProcessorStatus
 		
 		//Flags
 		document.getElementById("PC").innerHTML = "" + this.PC;
-		document.getElementById("Carry").innerHTML = "" + this.flags[0];
-		document.getElementById("Zero").innerHTML = "" + this.flags[1];
-		document.getElementById("Negative").innerHTML = "" + this.flags[2];
-		document.getElementById("Overflow").innerHTML = "" + this.flags[3];
-		document.getElementById("Sign").innerHTML = "" + this.flags[4];
-		document.getElementById("HCarry").innerHTML = "" + this.flags[5];
-		document.getElementById("BitCopy").innerHTML = "" + this.flags[6];
-		document.getElementById("Interrupt").innerHTML = "" + this.flags[7];
+		document.getElementById("Carry").innerHTML = "" + this.SREG[0];
+		document.getElementById("Zero").innerHTML = "" + this.SREG[1];
+		document.getElementById("Negative").innerHTML = "" + this.SREG[2];
+		document.getElementById("Overflow").innerHTML = "" + this.SREG[3];
+		document.getElementById("Sign").innerHTML = "" + this.SREG[4];
+		document.getElementById("HCarry").innerHTML = "" + this.SREG[5];
+		document.getElementById("BitCopy").innerHTML = "" + this.SREG[6];
+		document.getElementById("Interrupt").innerHTML = "" + this.SREG[7];
 		
 	}
 
@@ -108,16 +107,15 @@ class ProcessorStatus
 
 		//Flags
 		document.getElementById("PC").innerHTML = "" + this.intToHex(this.PC);
-		document.getElementById("Carry").innerHTML = "" + this.flags[0];
-		document.getElementById("Zero").innerHTML = "" + this.flags[1];
-		document.getElementById("Negative").innerHTML = "" + this.flags[2];
-		document.getElementById("Overflow").innerHTML = "" + this.flags[3];
-		document.getElementById("Sign").innerHTML = "" + this.flags[4];
-		document.getElementById("HCarry").innerHTML = "" + this.flags[5];
-		document.getElementById("BitCopy").innerHTML = "" + this.flags[6];
-		document.getElementById("Interrupt").innerHTML = "" + this.flags[7];
+		document.getElementById("Carry").innerHTML = "" + this.SREG[0];
+		document.getElementById("Zero").innerHTML = "" + this.SREG[1];
+		document.getElementById("Negative").innerHTML = "" + this.SREG[2];
+		document.getElementById("Overflow").innerHTML = "" + this.SREG[3];
+		document.getElementById("Sign").innerHTML = "" + this.SREG[4];
+		document.getElementById("HCarry").innerHTML = "" + this.SREG[5];
+		document.getElementById("BitCopy").innerHTML = "" + this.SREG[6];
+		document.getElementById("Interrupt").innerHTML = "" + this.SREG[7];	}
 	}
-
 	//API
 	setReg(numReg,val)
 	{
@@ -160,7 +158,7 @@ class ProcessorStatus
 
 		for(var i=0;i<32;i++)
 		{
-			this.gpRegs[i] = 0;
+			this.SREG[i] = 0;
 		}		
 		
 		this.updateUI();
