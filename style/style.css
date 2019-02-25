@@ -5,8 +5,8 @@ body {
 
 textarea {
 	width: 33%;
-	margin: 1px;
-	padding: 1px;
+	margin: 0px;
+	padding: 13px;
 }
 			
 #sinistra, #sinistra2 { 
@@ -19,7 +19,7 @@ textarea {
 			
 #sinistra2 table, #sinistra table, #destra table {
 	border-collapse: collapse;
-	margin: 1px;
+	margin: 50px;
 	padding: 1px;
 }
 			
@@ -46,7 +46,9 @@ textarea {
 	max-width: 15em
 }
 			
-#pulsanti{	
+#pulsanti{
+	border: solid 1px green;
+	float: left;
 	padding: 2px;
-	margin: 2px;
+	margin: 0px;
 }
