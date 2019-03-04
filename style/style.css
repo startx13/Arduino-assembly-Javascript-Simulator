@@ -9,7 +9,7 @@ textarea {
 	padding: 13px;
 }
 			
-#sinistra, #sinistra2 { 
+#sinistra, #sinistra2, #sinistra3 { 
 				
 	border: solid 1px green;
 	float: left;
@@ -17,7 +17,7 @@ textarea {
 	max-width: 15em
 }
 			
-#sinistra2 table, #sinistra table, #destra table {
+#sinistra3 table, #sinistra2 table, #sinistra table, #destra table {
 	border-collapse: collapse;
 	margin: 50px;
 	padding: 1px;

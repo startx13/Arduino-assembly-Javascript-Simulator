@@ -133,7 +133,8 @@ class Processor{
 				this.procStatus.PC = i; 
 				this.execInstruction(command,op);			  
 				this.procStatus.updateUI();
-				i = this.procStatus.PC; 		
+				i = this.procStatus.PC; 
+				this.procStatus.writePortB(10);		
 			}
 		}
   	}

@@ -23,6 +23,11 @@ class ProcessorStatus
 		this.gpRegs = new Array(32); //R0-->R31
 		this.PC = 0;
 		this.SP = 0;
+
+		this.portB = new Array(8);
+		this.portC = new Array(8);
+		this.portD = new Array(8);
+
 		this.SREG = new Array(8);;
 		this.hex = false;		
 
@@ -69,7 +74,12 @@ class ProcessorStatus
 			document.getElementById(nomeReg).innerHTML = "" + this.gpRegs[i];
 			//console.log(nomeReg + " = " + this.gpRegs[i]); //debug regs
 		}
-		
+
+		//ports		
+		document.getElementById("PortB").innerHTML = "" + portB[0] + portB[1] + portB[2] + portB[3] + " " + portB[4] + portB[5] + portB[6] + portB[7];
+		document.getElementById("PortC").innerHTML = "" + portC[0] + portC[1] + portC[2] + portC[3] + " " + portC[4] + portC[5] + portC[6] + portC[7];
+		document.getElementById("PortD").innerHTML = "" + portD[0] + portD[1] + portD[2] + portD[3] + " " + portD[4] + portD[5] + portD[6] + portD[7];
+
 		//Flags
 		document.getElementById("PC").innerHTML = "" + this.PC;
 		document.getElementById("Carry").innerHTML = "" + this.SREG[0];
@@ -95,6 +105,11 @@ class ProcessorStatus
 		return hexString;
 	}	
 	
+	intToBin(number)
+	{
+		return (number >>> 0).toString(2);
+	}
+
 	updateUIHex()
 	{
 		//GP registers
@@ -104,6 +119,11 @@ class ProcessorStatus
 			document.getElementById(nomeReg).innerHTML = "" + this.intToHex(this.gpRegs[i]);
 			//console.log(nomeReg + " = " + this.gpRegs[i]); //debug regs
 		}		
+
+		//ports		
+		document.getElementById("PortB").innerHTML = "" + portB[0] + portB[1] + portB[2] + portB[3] + " " + portB[4] + portB[5] + portB[6] + portB[7];
+		document.getElementById("PortC").innerHTML = "" + portC[0] + portC[1] + portC[2] + portC[3] + " " + portC[4] + portC[5] + portC[6] + portC[7];
+		document.getElementById("PortD").innerHTML = "" + portD[0] + portD[1] + portD[2] + portD[3] + " " + portD[4] + portD[5] + portD[6] + portD[7];
 
 		//Flags
 		document.getElementById("PC").innerHTML = "" + this.intToHex(this.PC);
@@ -143,7 +163,41 @@ class ProcessorStatus
 			return 0;		
 		}
 	}
+
+	writePortB(number)
+	{
+		var bin;
+		if(number<256 && number>=0)
+		{
+			bin = intToBin(number);
+		}
+		else
+		{
+			if(number>0)
+			{
+				bin = intToBin(255);			
+			}
+			else
+			{
+				bin = intToBin(0);			
+			}
+		}		
+		for(var i = bin.length-1 ; i<=0 ; i--)
+		{
+			this.portB[i] = bin[i];			
+		}
+	}
+
+	writePortB(number)
+	{
+
+	}
+
+	writePortB(number)
+	{
 	
+	}	
+
 	//FINE API
 	
 	reset()
