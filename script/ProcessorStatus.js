@@ -188,14 +188,52 @@ class ProcessorStatus
 		}
 	}
 
-	writePortB(number)
+	writePortC(number)
 	{
-
+		var bin;
+		if(number<256 && number>=0)
+		{
+			bin = intToBin(number);
+		}
+		else
+		{
+			if(number>0)
+			{
+				bin = intToBin(255);			
+			}
+			else
+			{
+				bin = intToBin(0);			
+			}
+		}		
+		for(var i = bin.length-1 ; i<=0 ; i--)
+		{
+			this.portC[i] = bin[i];			
+		}
 	}
 
-	writePortB(number)
+	writePortD(number)
 	{
-	
+		var bin;
+		if(number<256 && number>=0)
+		{
+			bin = intToBin(number);
+		}
+		else
+		{
+			if(number>0)
+			{
+				bin = intToBin(255);			
+			}
+			else
+			{
+				bin = intToBin(0);			
+			}
+		}		
+		for(var i = bin.length-1 ; i<=0 ; i--)
+		{
+			this.portD[i] = bin[i];			
+		}
 	}	
 
 	//FINE API
