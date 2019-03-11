@@ -40,6 +40,13 @@ class ProcessorStatus
 		{
 			this.SREG[i] = false;
 		}
+		
+		for(var i=0;i<8;i++)
+		{
+			this.portB[i] = 0;
+			this.portC[i] = 0;
+			this.portD[i] = 0;
+		}
 
 	}
 
@@ -76,9 +83,9 @@ class ProcessorStatus
 		}
 
 		//ports		
-		document.getElementById("PortB").innerHTML = "" + portB[0] + portB[1] + portB[2] + portB[3] + " " + portB[4] + portB[5] + portB[6] + portB[7];
-		document.getElementById("PortC").innerHTML = "" + portC[0] + portC[1] + portC[2] + portC[3] + " " + portC[4] + portC[5] + portC[6] + portC[7];
-		document.getElementById("PortD").innerHTML = "" + portD[0] + portD[1] + portD[2] + portD[3] + " " + portD[4] + portD[5] + portD[6] + portD[7];
+		document.getElementById("PortB").innerHTML = "" + this.portB[0] + this.portB[1] + this.portB[2] + this.portB[3] + " " + this.portB[4] + this.portB[5] + this.portB[6] + this.portB[7];
+		document.getElementById("PortC").innerHTML = "" + this.portC[0] + this.portC[1] + this.portC[2] + this.portC[3] + " " + this.portC[4] + this.portC[5] + this.portC[6] + this.portC[7];
+		document.getElementById("PortD").innerHTML = "" + this.portD[0] + this.portD[1] + this.portD[2] + this.portD[3] + " " + this.portD[4] + this.portD[5] + this.portD[6] + this.portD[7];
 
 		//Flags
 		document.getElementById("PC").innerHTML = "" + this.PC;
@@ -121,9 +128,9 @@ class ProcessorStatus
 		}		
 
 		//ports		
-		document.getElementById("PortB").innerHTML = "" + portB[0] + portB[1] + portB[2] + portB[3] + " " + portB[4] + portB[5] + portB[6] + portB[7];
-		document.getElementById("PortC").innerHTML = "" + portC[0] + portC[1] + portC[2] + portC[3] + " " + portC[4] + portC[5] + portC[6] + portC[7];
-		document.getElementById("PortD").innerHTML = "" + portD[0] + portD[1] + portD[2] + portD[3] + " " + portD[4] + portD[5] + portD[6] + portD[7];
+		document.getElementById("PortB").innerHTML = "" + this.portB[0] + this.portB[1] + this.portB[2] + this.portB[3] + " " + this.portB[4] + this.portB[5] + this.portB[6] + this.portB[7];
+		document.getElementById("PortC").innerHTML = "" + this.portC[0] + this.portC[1] + this.portC[2] + this.portC[3] + " " + this.portC[4] + this.portC[5] + this.portC[6] + this.portC[7];
+		document.getElementById("PortD").innerHTML = "" + this.portD[0] + this.portD[1] + this.portD[2] + this.portD[3] + " " + this.portD[4] + this.portD[5] + this.portD[6] + this.portD[7];
 
 		//Flags
 		document.getElementById("PC").innerHTML = "" + this.intToHex(this.PC);
@@ -134,8 +141,9 @@ class ProcessorStatus
 		document.getElementById("Sign").innerHTML = "" + this.SREG[4];
 		document.getElementById("HCarry").innerHTML = "" + this.SREG[5];
 		document.getElementById("BitCopy").innerHTML = "" + this.SREG[6];
-		document.getElementById("Interrupt").innerHTML = "" + this.SREG[7];	}
+		document.getElementById("Interrupt").innerHTML = "" + this.SREG[7];	
 	}
+
 	//API
 	setReg(numReg,val)
 	{
@@ -154,14 +162,12 @@ class ProcessorStatus
 
 	getReg(numReg)
 	{
+		var val = 0;
 		if(numReg >=0 || numReg < 32)
 		{
-			return this.gpRegs[numReg];		
+			val = this.gpRegs[numReg];		
 		}
-		else
-		{
-			return 0;		
-		}
+		return val;
 	}
 
 	writePortB(number)
@@ -169,17 +175,17 @@ class ProcessorStatus
 		var bin;
 		if(number<256 && number>=0)
 		{
-			bin = intToBin(number);
+			bin = this.intToBin(number);
 		}
 		else
 		{
 			if(number>0)
 			{
-				bin = intToBin(255);			
+				bin = this.intToBin(255);			
 			}
 			else
 			{
-				bin = intToBin(0);			
+				bin = this.intToBin(0);			
 			}
 		}		
 		for(var i = bin.length-1 ; i<=0 ; i--)
@@ -193,17 +199,17 @@ class ProcessorStatus
 		var bin;
 		if(number<256 && number>=0)
 		{
-			bin = intToBin(number);
+			bin = this.intToBin(number);
 		}
 		else
 		{
 			if(number>0)
 			{
-				bin = intToBin(255);			
+				bin = this.intToBin(255);			
 			}
 			else
 			{
-				bin = intToBin(0);			
+				bin = this.intToBin(0);			
 			}
 		}		
 		for(var i = bin.length-1 ; i<=0 ; i--)
@@ -223,11 +229,11 @@ class ProcessorStatus
 		{
 			if(number>0)
 			{
-				bin = intToBin(255);			
+				bin = this.intToBin(255);			
 			}
 			else
 			{
-				bin = intToBin(0);			
+				bin = this.intToBin(0);			
 			}
 		}		
 		for(var i = bin.length-1 ; i<=0 ; i--)

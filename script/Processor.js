@@ -99,6 +99,18 @@ class Processor{
 		{
 			procStatus.PC = Number(op[0]);
 		}
+
+		var clrF = function(op,procStatus)
+		{
+			if(typeof op[0] === 'string')
+			{
+				var regIntv = op[0].split("r");
+				var regInt = Number(regIntv[1]);
+
+				var val = 0;
+				procStatus.setReg(regInt,val);
+			}
+		}
 		
 		this.operationList.addOperation("ldi",ldiF)
 		this.operationList.addOperation("add",addF);
@@ -107,6 +119,7 @@ class Processor{
 		this.operationList.addOperation("inc",incF);
 		this.operationList.addOperation("neg",negF);
 		this.operationList.addOperation("jmp",jmpF);
+		this.operationList.addOperation("clr",clrF);
 		
   	}
 
