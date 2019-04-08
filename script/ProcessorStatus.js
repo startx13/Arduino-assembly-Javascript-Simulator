@@ -187,10 +187,14 @@ class ProcessorStatus
 			{
 				bin = this.intToBin(0);			
 			}
-		}		
-		for(var i = bin.length-1 ; i<=0 ; i--)
+		}
+		console.log(bin);
+
+		var offset = this.portB.length - bin.length;
+		
+		for(var i = bin.length-1;i=>0 ; i--)
 		{
-			this.portB[i] = bin[i];			
+			this.portB[offset + i] = bin[i];			
 		}
 	}
 
@@ -212,7 +216,7 @@ class ProcessorStatus
 				bin = this.intToBin(0);			
 			}
 		}		
-		for(var i = bin.length-1 ; i<=0 ; i--)
+		for(var i = bin.length ; i<=0 ; i--)
 		{
 			this.portC[i] = bin[i];			
 		}

@@ -112,6 +112,19 @@ class Processor{
 			}
 		}
 		
+		var outF = function(op,procStatus)
+		{
+			if(typeof op[0] === 'string')
+			{
+				if(op[0] === "PortB")
+				{
+					var regIntv = op[0].split("r");
+					var regInt = Number(regIntv[1]);
+					procStatus.writePortB(procStatus.getReg(regInt));				
+				}
+			}
+		}		
+		
 		this.operationList.addOperation("ldi",ldiF)
 		this.operationList.addOperation("add",addF);
 		this.operationList.addOperation("sbc",sbcF);
@@ -120,6 +133,7 @@ class Processor{
 		this.operationList.addOperation("neg",negF);
 		this.operationList.addOperation("jmp",jmpF);
 		this.operationList.addOperation("clr",clrF);
+		this.operationList.addOperation("out",outF);
 		
   	}
 
