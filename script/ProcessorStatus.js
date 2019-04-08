@@ -192,7 +192,7 @@ class ProcessorStatus
 
 		var offset = this.portB.length - bin.length;
 		
-		for(var i = bin.length-1;i=>0 ; i--)
+		for(var i = bin.length-1; i>=0 ; i--)
 		{
 			this.portB[offset + i] = bin[i];			
 		}
