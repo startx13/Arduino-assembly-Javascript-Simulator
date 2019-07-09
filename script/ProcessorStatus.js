@@ -18,6 +18,7 @@ class ProcessorStatus
 	//var SP;   	//8/16 bit!!
 	//var SREG; 	//8bit!! max 255
 
+	
 	constructor()
 	{
 		this.gpRegs = new Array(32); //R0-->R31
@@ -266,3 +267,13 @@ class ProcessorStatus
 		this.updateUI();
 	}
 }
+
+		//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+		ProcessorStatus.C=0; // Carry flag
+		ProcessorStatus.Z=1; // Zero flag
+		ProcessorStatus.N=2; // Negative flag
+		ProcessorStatus.V=3; // Two’s Complement Overflow Flag
+		ProcessorStatus.S=4; // sign bit, exclusive or between N and V
+		ProcessorStatus.H=5; // half carry flag (utile nelle operazioni in aritmetica BCD)
+		ProcessorStatus.T=6; // bit copy storage (usato con le istruzioni BLD e BST)
+		ProcessorStatus.I=7; // global interrupt enable (set by RETI, clear by any interrupt)
