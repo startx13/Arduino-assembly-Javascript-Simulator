@@ -8,7 +8,7 @@ class Processor{
 		this.operationList = new Operation();
 		//add op here
 		
-		//add
+		//add: add two registers , Rd, Rr, [Z,C,N,V,H]
 		var addF = function(op,procStatus)
 		{				
 			var regInt1v = op[0].split("r");
@@ -17,46 +17,67 @@ class Processor{
 			var regInt2v = op[1].split("r");
 			var regInt2 = Number(regInt2v[1]);
 	
-			var b = Number(procStatus.getReg(regInt1)) + Number(procStatus.getReg(regInt2));
+			var result = Number(procStatus.getReg(regInt1)) + Number(procStatus.getReg(regInt2)); // + Number(procStatus.flags[progStatus.C]);
 
-			if(b == 0)
+			if (result == 0)
 			{
-				procStatus.flags[1] = true;
-			}			
+				procStatus.flags[progStatus.Z] = true;
+			}	
+			else if (result > 255)
+			{
+				procStatus.flags[progStatus.V] = true; // overflow
+			}	
+			else if (result < 0)
+			{
+				procStatus.flags[progStatus.N] = true;
+			}
 			
-			procStatus.setReg(regInt1,b);				
-		}
+			// TO DO: 	procStatus.flags[progStatus.C] = false; 
 
+			procStatus.setReg(regInt1,result);	
+						
+		}
+		// sbc: subtract with carry two registers , Rd, Rr, [Z,C,N,V,H]
 		var sbcF = function(op,procStatus)
 		{				
-	        	var regInt1v = op[0].split("r");
-	        	var regInt1 = Number(regInt1v[1]);
+	        var regInt1v = op[0].split("r");
+	        var regInt1 = Number(regInt1v[1]);
 	
 			var regInt2v = op[1].split("r");
 			var regInt2 = Number(regInt2v[1]);
 	
-			var b = Number(procStatus.getReg(regInt1)) - Number(procStatus.getReg(regInt2));
+			var result = Number(procStatus.getReg(regInt1)) - Number(procStatus.getReg(regInt2)) - Number(procStatus.flags[progStatus.C]);
 
-			if(b == 0)
+			if (result == 0)
 			{
-				procStatus.flags[1] = true;
-			}			
-					
-			procStatus.setReg(regInt1,b);				
+				procStatus.flags[progStatus.Z] = true;
+			}	
+			else if (result > 255)
+			{
+				procStatus.flags[progStatus.V] = true; // overflow
+			}	
+			else if (result < 0)
+			{
+				procStatus.flags[progStatus.N] = true;
+			}		
+			// TO DO: 	procStatus.flags[progStatus.C] = false; 		
+			procStatus.setReg(regInt1,result);
 		}
 		
+		// mov: move between registers, copy data between register, Rd, Rr, [none]
 		var movF = function(op,procStatus)
 		{				
-        		var regInt1v = op[0].split("r");
-        		var regInt1 = Number(regInt1v[1]);
+        	var regInt1v = op[0].split("r");
+        	var regInt1 = Number(regInt1v[1]);
 			
 			var regInt2v = op[1].split("r");
 			var regInt2 = Number(regInt2v[1]);
 	
-			var b = Number(procStatus.getReg(regInt2));
-			procStatus.setReg(regInt1,b);				
+			var result = Number(procStatus.getReg(regInt2));
+			procStatus.setReg(regInt1,result);				
 		}
 		
+		// ldi: load immediate (constant value) Rd, K, [none]
 		var ldiF = function(op,procStatus)
 		{
 			if(typeof op[0] === 'string')
@@ -68,7 +89,8 @@ class Processor{
 				procStatus.setReg(regInt,val);
 			}
 		}
-
+		
+		// inc: increment Rd [Z,N,V]
 		var incF = function(op,procStatus)
 		{
 			if(typeof op[0] === 'string')
@@ -76,12 +98,30 @@ class Processor{
 				var regIntv = op[0].split("r");
  				var regInt = Number(regIntv[1]);
 
-				var val = Number(op[1]);
+				//var val = Number(op[1]); inutile?
+	
+				result =  procStatus.getReg(regInt) + 1;
 
-				procStatus.setReg(regInt, procStatus.getReg(regInt) + 1);
+				procStatus.setReg(regInt,result);
+				
+				if (result == 0)
+				{
+					procStatus.flags[progStatus.Z] = true;
+				}	
+				else if (result > 255)
+				{
+					procStatus.flags[progStatus.V] = true; // overflow
+				}	
+				else if (result < 0)
+				{
+					procStatus.flags[progStatus.N] = true;
+				}
 			}
+			
+			
 		}
 		
+		// neg, difference between constant $00 and register , Rd,  [Z,C,N,V,H]
 		var negF = function(op,procStatus)
 		{
 			if(typeof op[0] === 'string')
@@ -90,16 +130,33 @@ class Processor{
 				var regInt = Number(regIntv[1]);
 
 				var val = Number(op[1]);
-
-				procStatus.setReg(regInt, procStatus.getReg(regInt) * (-1));
+				
+				result = 0 - procStatus.getReg(regInt);
+				
+				procStatus.setReg(regInt,result);
+				
+				if (result == 0)
+				{
+					procStatus.flags[progStatus.Z] = true;
+				}	
+				else if (result > 255)
+				{
+					procStatus.flags[progStatus.V] = true; // overflow
+				}	
+				else if (result < 0)
+				{
+					procStatus.flags[progStatus.N] = true;
+				}
 			}
 		}
 		
+		//jmp, direct jump, PC<-k
 		var jmpF = function(op,procStatus)
 		{
 			procStatus.PC = Number(op[0]);
 		}
-
+		
+		//clr, clear register
 		var clrF = function(op,procStatus)
 		{
 			if(typeof op[0] === 'string')
@@ -112,10 +169,12 @@ class Processor{
 			}
 		}
 		
+		//out, write out to I/O port 
 		var outF = function(op,procStatus)
 		{
 			if(typeof op[0] === 'string')
 			{
+				 // TO DO: deve accettare tutti i registri PortB, DDRB, PortC, DDRC, PortD, DDRD
 				if(op[0] === "PortB")
 				{
 					var regIntv = op[0].split("r");
